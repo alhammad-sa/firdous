@@ -12,7 +12,7 @@ export default function News() {
   const { t, language } = useLanguage();
   const isRTL = language.direction === 'rtl';
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const articlesPerPage = 6;
 
@@ -28,7 +28,7 @@ export default function News() {
       article.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (article.contentEn && article.contentEn.toLowerCase().includes(searchQuery.toLowerCase()));
     
-    const matchesCategory = selectedCategory === "" || article.category === selectedCategory;
+    const matchesCategory = selectedCategory === "all" || selectedCategory === "" || article.category === selectedCategory;
     
     return matchesSearch && matchesCategory;
   });
@@ -39,7 +39,7 @@ export default function News() {
   const paginatedArticles = filteredArticles.slice(startIndex, startIndex + articlesPerPage);
 
   const categories = [
-    { value: "", label: isRTL ? "جميع الفئات" : "All Categories" },
+    { value: "all", label: isRTL ? "جميع الفئات" : "All Categories" },
     { value: "تحديثات قانونية", label: isRTL ? "تحديثات قانونية" : "Legal Updates" },
     { value: "قرارات قضائية", label: isRTL ? "قرارات قضائية" : "Court Decisions" },
     { value: "نصائح قانونية", label: isRTL ? "نصائح قانونية" : "Legal Advice" },

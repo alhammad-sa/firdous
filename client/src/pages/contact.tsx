@@ -21,7 +21,7 @@ export default function Contact() {
     name: "",
     email: "",
     phone: "",
-    subject: "",
+    subject: "general",
     message: ""
   });
 
@@ -38,7 +38,7 @@ export default function Contact() {
         name: "",
         email: "",
         phone: "",
-        subject: "",
+        subject: "general",
         message: ""
       });
     },
@@ -71,7 +71,7 @@ export default function Contact() {
   };
 
   const subjectOptions = [
-    { value: "", label: isRTL ? "اختر نوع الاستشارة" : "Choose consultation type" },
+    { value: "general", label: isRTL ? "اختر نوع الاستشارة" : "Choose consultation type" },
     { value: "commercial", label: isRTL ? "قانون تجاري" : "Commercial Law" },
     { value: "civil", label: isRTL ? "قانون مدني" : "Civil Law" },
     { value: "arbitration", label: isRTL ? "تحكيم" : "Arbitration" },
