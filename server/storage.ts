@@ -1,5 +1,6 @@
 import { type User, type InsertUser, type NewsArticle, type InsertNewsArticle, type ContactMessage, type InsertContactMessage } from "@shared/schema";
 import { randomUUID } from "crypto";
+import bcrypt from "bcrypt";
 
 export interface IStorage {
   // User methods
@@ -38,13 +39,14 @@ export class MemStorage implements IStorage {
     this.initializeDefaultData();
   }
 
-  private initializeDefaultData() {
+  private async initializeDefaultData() {
     const adminId = randomUUID();
+    const hashedPassword = await bcrypt.hash("admin123", 10);
     const admin: User = {
       id: adminId,
       username: "admin",
       email: "admin@firdouslaw.sa",
-      password: "$2a$10$rOQ.dKKQiDKV.XkqJ0K0XO8KgF8.6QVkzO0RGKrJ8LvL8vPvO5Q8e", // "admin123"
+      password: hashedPassword,
       role: "admin",
       createdAt: new Date(),
     };
