@@ -19,11 +19,13 @@ export default function News() {
   const articlesPerPage = 6;
 
   const { data: articles = [], isLoading } = useQuery<NewsArticle[]>({
-    queryKey: ['/api/news', { published: true }],
+    queryKey: ['/api/news'],
   });
 
-  // Filter articles based on search and category
+  // Filter articles based on search, category, and published status
   const filteredArticles = articles.filter(article => {
+    const isPublished = article.published;
+    
     const matchesSearch = searchQuery === "" || 
       article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (article.titleEn && article.titleEn.toLowerCase().includes(searchQuery.toLowerCase())) ||
@@ -32,7 +34,7 @@ export default function News() {
     
     const matchesCategory = selectedCategory === "all" || selectedCategory === "" || article.category === selectedCategory;
     
-    return matchesSearch && matchesCategory;
+    return isPublished && matchesSearch && matchesCategory;
   });
 
   // Pagination
