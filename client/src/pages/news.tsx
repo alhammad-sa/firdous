@@ -4,8 +4,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
-import { Search, Eye, Filter, ChevronLeft, ChevronRight } from "lucide-react";
+import { Search, Eye, Filter, ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { NewsArticle } from "@shared/schema";
 
 export default function News() {
@@ -14,6 +15,7 @@ export default function News() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
   const articlesPerPage = 6;
 
   const { data: articles = [], isLoading } = useQuery<NewsArticle[]>({
@@ -166,14 +168,53 @@ export default function News() {
                   {getArticleExcerpt(article)}
                 </p>
                 <div className="flex justify-between items-center">
-                  <button className="text-accent-gold font-semibold hover:underline" data-testid={`article-link-${index}`}>
-                    {isRTL ? "اقرأ المزيد" : "Read More"}
-                    {isRTL ? (
-                      <ChevronRight className="w-4 h-4 inline mr-1" />
-                    ) : (
-                      <ChevronLeft className="w-4 h-4 inline ml-1" />
-                    )}
-                  </button>
+                  <Dialog>
+                    <DialogTrigger asChild>
+                      <button 
+                        className="text-accent-gold font-semibold hover:underline" 
+                        data-testid={`article-link-${index}`}
+                        onClick={() => setSelectedArticle(article)}
+                      >
+                        {isRTL ? "اقرأ المزيد" : "Read More"}
+                        {isRTL ? (
+                          <ChevronRight className="w-4 h-4 inline mr-1" />
+                        ) : (
+                          <ChevronLeft className="w-4 h-4 inline ml-1" />
+                        )}
+                      </button>
+                    </DialogTrigger>
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle className="text-2xl font-bold text-primary-green">
+                          {getArticleTitle(article)}
+                        </DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-4 text-sm text-text-medium">
+                          <span className="bg-accent-gold text-white px-3 py-1 rounded-full">
+                            {getArticleCategory(article)}
+                          </span>
+                          <span>{formatDate(article.publishedAt || article.createdAt)}</span>
+                          <div className="flex items-center">
+                            <Eye className="w-4 h-4 mr-1" />
+                            <span>{article.views}</span>
+                          </div>
+                        </div>
+                        {article.imageUrl && (
+                          <img 
+                            src={article.imageUrl} 
+                            alt={getArticleTitle(article)}
+                            className="w-full h-64 object-cover rounded-lg"
+                          />
+                        )}
+                        <div className="prose max-w-none">
+                          <p className="text-lg leading-relaxed whitespace-pre-wrap">
+                            {isRTL ? article.content : (article.contentEn || article.content)}
+                          </p>
+                        </div>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                   <div className="flex items-center text-text-medium text-sm">
                     <Eye className={`w-4 h-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
                     <span data-testid={`article-views-${index}`}>{article.views}</span>

@@ -5,37 +5,37 @@
 
 :root {
   --background: hsl(44, 57%, 96%);
-  --foreground: hsl(321, 17%, 17%);
+  --foreground: hsl(322, 48%, 14%);
   --card: hsl(210, 40%, 98%);
-  --card-foreground: hsl(321, 17%, 17%);
+  --card-foreground: hsl(322, 48%, 14%);
   --popover: hsl(44, 57%, 96%);
-  --popover-foreground: hsl(321, 17%, 17%);
-  --primary: hsl(321, 17%, 17%);
+  --popover-foreground: hsl(322, 48%, 14%);
+  --primary: hsl(322, 48%, 14%);
   --primary-foreground: hsl(44, 57%, 96%);
   --secondary: hsl(39, 62%, 48%);
   --secondary-foreground: hsl(44, 57%, 96%);
   --muted: hsl(210, 40%, 95%);
   --muted-foreground: hsl(215, 16%, 47%);
   --accent: hsl(44, 57%, 96%);
-  --accent-foreground: hsl(321, 17%, 17%);
+  --accent-foreground: hsl(322, 48%, 14%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(210, 40%, 98%);
   --border: hsl(214, 32%, 91%);
   --input: hsl(214, 32%, 91%);
-  --ring: hsl(321, 17%, 17%);
+  --ring: hsl(322, 48%, 14%);
   --chart-1: hsl(12, 76%, 61%);
   --chart-2: hsl(173, 58%, 39%);
   --chart-3: hsl(197, 37%, 24%);
   --chart-4: hsl(43, 74%, 66%);
   --chart-5: hsl(27, 87%, 67%);
   --sidebar: hsl(210, 40%, 98%);
-  --sidebar-foreground: hsl(321, 17%, 17%);
-  --sidebar-primary: hsl(321, 17%, 17%);
+  --sidebar-foreground: hsl(322, 48%, 14%);
+  --sidebar-primary: hsl(322, 48%, 14%);
   --sidebar-primary-foreground: hsl(44, 57%, 96%);
   --sidebar-accent: hsl(44, 57%, 96%);
-  --sidebar-accent-foreground: hsl(321, 17%, 17%);
+  --sidebar-accent-foreground: hsl(322, 48%, 14%);
   --sidebar-border: hsl(214, 32%, 91%);
-  --sidebar-ring: hsl(321, 17%, 17%);
+  --sidebar-ring: hsl(322, 48%, 14%);
   --font-sans: 'Cairo', 'Inter', sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: 'Fira Code', monospace;
@@ -44,7 +44,7 @@
   /* Custom colors */
   --sugar: hsl(44, 57%, 96%);
   --sugar-light: hsl(48, 65%, 98%);
-  --primary-green: hsl(90, 40%, 20%);
+  --primary-green: hsl(322, 48%, 14%);
   --accent-gold: hsl(39, 62%, 48%);
   --text-dark: hsl(0, 0%, 17%);
   --text-medium: hsl(215, 16%, 47%);
