@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/use-language";
-import { Shield, Eye, EyeOff, Newspaper, MessageSquare, Settings, LogOut } from "lucide-react";
+import { Shield, Eye, EyeOff, Newspaper, MessageSquare, Settings, LogOut, Home } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import { NewsManagement } from "@/components/admin/news-management";
 import { ContactMessages } from "@/components/admin/contact-messages";
@@ -269,7 +269,16 @@ export default function Admin() {
             })}
           </nav>
 
-          <div className="absolute bottom-4 left-4 right-4">
+          <div className="absolute bottom-4 left-4 right-4 space-y-2">
+            <Button
+              onClick={() => window.location.href = '/'}
+              variant="ghost"
+              className="w-full text-white hover:bg-white/10 transition-colors justify-start"
+              data-testid="home-button"
+            >
+              <Home className={`w-5 h-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
+              {isRTL ? "الصفحة الرئيسية" : "Go to Main Page"}
+            </Button>
             <Button
               onClick={handleLogout}
               variant="ghost"
