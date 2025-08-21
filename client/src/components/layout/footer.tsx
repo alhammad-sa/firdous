@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { useLanguage } from "@/hooks/use-language";
 import { MapPin, Phone, Mail, Clock, Twitter, Linkedin, Instagram } from "lucide-react";
+import logoImage from "@assets/WhatsApp Image 2025-08-17 at 21.13.30_1755793903486.jpeg";
 
 export function Footer() {
   const { t, language } = useLanguage();
@@ -21,9 +22,11 @@ export function Footer() {
           {/* Company Info */}
           <div className="md:col-span-2">
             <div className="flex items-center mb-6">
-              <div className={`w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center ${isRTL ? 'ml-3' : 'mr-3'}`}>
-                <span className="text-white font-bold text-lg">FS</span>
-              </div>
+              <img 
+                src={logoImage} 
+                alt={isRTL ? 'شعار شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan Logo'}
+                className={`w-12 h-12 object-contain ${isRTL ? 'ml-3' : 'mr-3'}`}
+              />
               <div>
                 <h3 className="text-xl font-bold">
                   {isRTL ? 'شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan'}

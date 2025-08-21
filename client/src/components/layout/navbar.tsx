@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { LanguageSwitcher } from "@/components/ui/language-switcher";
 import { useLanguage } from "@/hooks/use-language";
 import { Menu, X, Shield } from "lucide-react";
+import logoImage from "@assets/WhatsApp Image 2025-08-17 at 21.13.30_1755793903486.jpeg";
 
 export function Navbar() {
   const [location] = useLocation();
@@ -30,9 +31,11 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex items-center" data-testid="logo-link">
-              <div className="w-16 h-16 bg-primary-green rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-xl font-inter">FS</span>
-              </div>
+              <img 
+                src={logoImage} 
+                alt={isRTL ? 'شعار شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan Logo'}
+                className="w-16 h-16 object-contain"
+              />
               <div className={`${isRTL ? 'mr-3' : 'ml-3'}`}>
                 <h1 className="text-lg font-bold text-primary-green leading-tight">
                   {isRTL ? 'شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan'}
