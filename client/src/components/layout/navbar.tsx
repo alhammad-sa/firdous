@@ -66,15 +66,6 @@ export function Navbar() {
             
             <LanguageSwitcher />
 
-            <Link href="/admin">
-              <Button 
-                className="bg-accent-gold text-white hover:bg-accent-gold/90" 
-                data-testid="admin-button"
-              >
-                <Shield className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                {t('navigation.admin')}
-              </Button>
-            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -112,19 +103,8 @@ export function Navbar() {
               </Link>
             ))}
             
-            <div className="flex items-center justify-between pt-3 border-t border-gray-200">
+            <div className="flex items-center justify-center pt-3 border-t border-gray-200">
               <LanguageSwitcher />
-              <Link href="/admin">
-                <Button 
-                  className="bg-accent-gold text-white hover:bg-accent-gold/90" 
-                  size="sm"
-                  onClick={() => setMobileMenuOpen(false)}
-                  data-testid="mobile-admin-button"
-                >
-                  <Shield className={`w-4 h-4 ${isRTL ? 'ml-2' : 'mr-2'}`} />
-                  {t('navigation.admin')}
-                </Button>
-              </Link>
             </div>
           </div>
         </div>
