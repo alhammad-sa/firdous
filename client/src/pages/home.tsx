@@ -67,9 +67,8 @@ export default function Home() {
                 </Link>
                 <Link href="/services">
                   <Button 
-                    variant="outline" 
                     size="lg"
-                    className="border-2 border-white text-white hover:bg-white hover:text-primary-green transition-all"
+                    className="bg-white text-primary-green border-2 border-white hover:bg-primary-green hover:text-white font-semibold shadow-lg transform hover:scale-105 transition-all"
                     data-testid="cta-services"
                   >
                     <Gavel className={`w-5 h-5 ${isRTL ? 'ml-2' : 'mr-2'}`} />
