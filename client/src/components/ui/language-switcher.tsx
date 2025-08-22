@@ -19,7 +19,7 @@ export function LanguageSwitcher() {
           }`}
           data-testid={`lang-button-${lang.code}`}
         >
-          {lang.code === 'ar' ? 'ع' : 'EN'}
+          {lang.code === 'ar' ? '🇸🇦' : '🇺🇸'}
         </Button>
       ))}
     </div>
