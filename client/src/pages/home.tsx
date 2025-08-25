@@ -157,9 +157,7 @@ export default function Home() {
           />
           
           {/* Navbar within hero */}
-          <div className="relative z-10">
-            <Navbar />
-          </div>
+          <Navbar />
           
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-8">
             <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'} lg:w-2/3`}>
