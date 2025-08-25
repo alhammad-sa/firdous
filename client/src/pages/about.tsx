@@ -70,7 +70,7 @@ export default function About() {
             </div>
           </div>
           <div className={`${isRTL ? 'order-1 lg:order-2' : 'order-1 lg:order-1'} transition-all duration-1000 delay-300 ${heroVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${isRTL ? '-translate-x-10' : 'translate-x-10'}`}`}>
-            <h2 className={`text-4xl lg:text-5xl font-bold text-primary-green mb-6 transition-all duration-1000 delay-500 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} data-testid="lawyer-name">
+            <h2 className={`text-4xl lg:text-5xl font-bold text-primary-green mb-6 whitespace-nowrap transition-all duration-1000 delay-500 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} data-testid="lawyer-name">
               {t('about.title')}
             </h2>
             <p className={`text-lg text-text-medium leading-relaxed mb-6 transition-all duration-1000 delay-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`} data-testid="lawyer-bio">
