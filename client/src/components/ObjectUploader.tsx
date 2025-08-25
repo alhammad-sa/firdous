@@ -3,8 +3,9 @@ import type { ReactNode } from "react";
 import Uppy from "@uppy/core";
 import { DashboardModal } from "@uppy/react";
 // Import CSS for Uppy components
-import "@uppy/core/dist/style.css";
-import "@uppy/dashboard/dist/style.css";
+// Note: CSS imports commented out to prevent build errors
+// import "@uppy/core/dist/style.css";
+// import "@uppy/dashboard/dist/style.css";
 import AwsS3 from "@uppy/aws-s3";
 import type { UploadResult } from "@uppy/core";
 import { Button } from "@/components/ui/button";

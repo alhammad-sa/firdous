@@ -12,7 +12,11 @@ const ACL_POLICY_METADATA_KEY = "custom:aclPolicy";
 // - GROUP_MEMBER: the users who are members of a specific group;
 // - SUBSCRIBER: the users who are subscribers of a specific service / content
 //   creator.
-export enum ObjectAccessGroupType {}
+export enum ObjectAccessGroupType {
+  // Placeholder enum value to prevent TypeScript compilation issues
+  // Add specific types as needed for your access control requirements
+  PLACEHOLDER = "placeholder"
+}
 
 // The logic user group that can access the object.
 export interface ObjectAccessGroup {
