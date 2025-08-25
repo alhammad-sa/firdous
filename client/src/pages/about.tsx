@@ -122,7 +122,7 @@ export default function About() {
 
           <Card className={`bg-white p-8 shadow-lg text-center transition-all duration-700 delay-200 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="mission-card">
             <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-green to-secondary-green rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                 <Target className="text-white w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold text-primary-green mb-4">{t('about.mission.title')}</h3>
@@ -134,7 +134,7 @@ export default function About() {
 
           <Card className={`bg-white p-8 shadow-lg text-center transition-all duration-700 delay-400 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="values-card">
             <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-green to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-green to-secondary-green rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
                 <Heart className="text-white w-8 h-8" />
               </div>
               <h3 className="text-2xl font-bold text-primary-green mb-4">{t('about.values.title')}</h3>
