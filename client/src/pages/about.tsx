@@ -148,8 +148,8 @@ export default function About() {
         </div>
 
         {/* Success Partners */}
-        <Card ref={partnersRef} className={`bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-700 relative overflow-hidden group ${partnersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="partners-section">
-          <CardContent className="relative z-10">
+        <Card ref={partnersRef} className={`bg-white p-12 shadow-lg transition-all duration-700 ${partnersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="partners-section">
+          <CardContent>
             <h3 className={`text-3xl lg:text-4xl font-bold text-primary-green text-center mb-8 transition-all duration-1000 delay-200 ${partnersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
               {isRTL ? "شركاء النجاح" : "Success Partners"}
             </h3>
@@ -157,23 +157,21 @@ export default function About() {
               {successPartners.map((partner, index) => (
                 <div 
                   key={index} 
-                  className={`text-center transition-all duration-1000 delay-${600 + index * 200} hover:scale-110 cursor-pointer group/partner ${partnersVisible ? 'opacity-100 translate-y-0 rotate-0' : 'opacity-0 translate-y-10 rotate-6'}`} 
+                  className={`text-center transition-all duration-1000 delay-${600 + index * 200} ${partnersVisible ? 'opacity-100 translate-y-0 rotate-0' : 'opacity-0 translate-y-10 rotate-6'}`} 
                   data-testid={`partner-${index}`}
                 >
-                  <div className="relative w-32 h-32 bg-gradient-to-br from-sugar to-white rounded-xl shadow-md hover:shadow-xl flex items-center justify-center mx-auto mb-4 p-4 transition-all duration-500 group-hover/partner:shadow-2xl group-hover/partner:-translate-y-2">
+                  <div className="w-32 h-32 bg-gradient-to-br from-sugar to-white rounded-xl shadow-md flex items-center justify-center mx-auto mb-4 p-4">
                     <img 
                       src={partner.logo} 
                       alt={partner.alt}
-                      className="max-w-full max-h-full object-contain transition-transform duration-500 group-hover/partner:scale-110"
+                      className="max-w-full max-h-full object-contain"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary-green/10 to-accent-gold/10 rounded-xl opacity-0 group-hover/partner:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <p className="font-semibold text-text-dark max-w-[120px] mx-auto leading-tight group-hover/partner:text-primary-green transition-colors duration-300">{partner.name}</p>
+                  <p className="font-semibold text-text-dark max-w-[120px] mx-auto leading-tight">{partner.name}</p>
                   <div className={`w-16 h-0.5 bg-gradient-to-r from-primary-green to-accent-gold mx-auto mt-2 transition-all duration-500 ${partnersVisible ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`} style={{ transitionDelay: `${800 + index * 200}ms` }}></div>
                 </div>
               ))}
             </div>
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-green/3 via-transparent to-accent-gold/3 opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-lg"></div>
           </CardContent>
         </Card>
       </div>
