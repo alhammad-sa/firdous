@@ -25,7 +25,7 @@ export function Navbar() {
   };
 
   return (
-    <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-white/20">
+    <nav className="bg-transparent sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Left Navigation */}
@@ -36,8 +36,8 @@ export function Navbar() {
                 href={item.href}
                 className={`px-3 py-2 text-sm font-medium transition-colors ${
                   isActive(item.href)
-                    ? 'text-gray-900 border-b-2 border-gray-900'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-white border-b-2 border-white'
+                    : 'text-white/80 hover:text-white'
                 }`}
                 data-testid={`nav-link-${item.href.replace('/', '') || 'home'}`}
               >
@@ -65,8 +65,8 @@ export function Navbar() {
                 href={item.href}
                 className={`px-3 py-2 text-sm font-medium transition-colors ${
                   isActive(item.href)
-                    ? 'text-gray-900 border-b-2 border-gray-900'
-                    : 'text-gray-600 hover:text-gray-900'
+                    ? 'text-white border-b-2 border-white'
+                    : 'text-white/80 hover:text-white'
                 }`}
                 data-testid={`nav-link-${item.href.replace('/', '') || 'home'}`}
               >
@@ -83,7 +83,7 @@ export function Navbar() {
               variant="ghost"
               size="sm"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-600 hover:text-gray-900 p-2"
+              className="text-white/80 hover:text-white p-2"
               data-testid="mobile-menu-button"
             >
               {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
