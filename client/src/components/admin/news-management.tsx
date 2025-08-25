@@ -451,22 +451,19 @@ export function NewsManagement() {
                         </div>
                       </div>
                     )}
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        // You can click to upload image manually when ready
-                      }}
-                      className="w-full"
+                    <ObjectUploader
+                      maxNumberOfFiles={1}
+                      maxFileSize={10485760}
+                      onGetUploadParameters={handleGetUploadParameters}
+                      onComplete={handleUploadComplete}
+                      buttonClassName="w-full border border-gray-300 hover:bg-gray-50"
                       data-testid="button-upload-image"
                     >
                       <div className="flex items-center gap-2">
                         <Upload className="w-4 h-4" />
                         <span>{isRTL ? "رفع صورة (اختياري)" : "Upload Image (Optional)"}</span>
                       </div>
-                    </Button>
+                    </ObjectUploader>
                   </div>
                   <p className="text-xs text-text-medium">
                     {isRTL ? "إذا لم ترفع صورة، ستستخدم الصورة الافتراضية" : "If no image is uploaded, the default image will be used"}
