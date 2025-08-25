@@ -6,6 +6,7 @@ import logoImage from "@assets/WhatsApp Image 2025-08-17 at 21.13.30_17557939034
 export function Footer() {
   const { t, language } = useLanguage();
   const isRTL = language.direction === 'rtl';
+  const currentYear = new Date().getFullYear();
 
   const navigationLinks = [
     { href: "/", label: t('navigation.home') },
@@ -112,7 +113,7 @@ export function Footer() {
 
         <div className="border-t border-gray-600 border-opacity-50 pt-8 mt-8 text-center">
           <p className="text-gray-300">
-            {t('footer.copyright')}
+            {t('footer.copyright').replace('{{year}}', currentYear.toString())}
           </p>
         </div>
       </div>

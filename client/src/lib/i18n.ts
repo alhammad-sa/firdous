@@ -101,7 +101,7 @@ export const translations: Translations = {
       description: "نحن نلتزم بتقديم خدمات قانونية عالية الجودة تغطي مختلف التخصصات القانونية، مع التركيز على تحقيق أفضل النتائج لعملائنا وفق أعلى معايير الاحترافية والدقة.",
       quickLinks: "روابط سريعة",
       contactInfo: "معلومات التواصل",
-      copyright: "© 2024 شركة فردوس سعود الشرهان للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة."
+      copyright: "© {{year}} شركة فردوس سعود الشرهان للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة."
     }
   },
   en: {
@@ -204,7 +204,7 @@ export const translations: Translations = {
       description: "We are committed to providing high-quality legal services covering various legal specializations, focusing on achieving the best results for our clients according to the highest standards of professionalism and accuracy.",
       quickLinks: "Quick Links",
       contactInfo: "Contact Information",
-      copyright: "© 2024 Firdous Saud Al-Sharhan Law and Consulting Company. All rights reserved."
+      copyright: "© {{year}} Firdous Saud Al-Sharhan Law and Consulting Company. All rights reserved."
     }
   }
 };
