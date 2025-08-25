@@ -83,16 +83,9 @@ export default function Services() {
                   <h3 className="text-xl font-bold text-primary-green mb-4" data-testid={`service-title-${index}`}>
                     {service.title}
                   </h3>
-                  <p className="text-text-medium leading-relaxed mb-4" data-testid={`service-description-${index}`}>
+                  <p className="text-text-medium leading-relaxed" data-testid={`service-description-${index}`}>
                     {service.description}
                   </p>
-                  <button 
-                    className="text-accent-gold font-semibold hover:underline flex items-center"
-                    data-testid={`service-link-${index}`}
-                  >
-                    {isRTL ? "اقرأ المزيد" : "Read More"}
-                    <ArrowIcon className={`w-4 h-4 ${isRTL ? 'mr-1' : 'ml-1'}`} />
-                  </button>
                 </CardContent>
               </Card>
             );
