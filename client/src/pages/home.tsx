@@ -265,8 +265,12 @@ export default function Home() {
                 </div>
               </div>
               <div className={`relative ${isRTL ? 'lg:order-1' : ''}`}>
-                <div className="aspect-video bg-gradient-to-br from-accent-gold to-primary-green rounded-2xl shadow-2xl flex items-center justify-center">
-                  <Users className="w-32 h-32 text-white/20" />
+                <div className="aspect-video rounded-2xl shadow-2xl overflow-hidden">
+                  <img 
+                    src="/images/lady-justice-saudi.jpg" 
+                    alt={isRTL ? "العدالة" : "Lady Justice"}
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
             </div>
