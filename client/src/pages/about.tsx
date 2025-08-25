@@ -23,9 +23,21 @@ export default function About() {
   const currentSkills = isRTL ? skills : skillsEn;
 
   const successPartners = [
-    { name: "Sharhan Exchange", initials: "SE" },
-    { name: "Harbi Exchange", initials: "HE" },
-    { name: isRTL ? "إيلاف لرعاية وتأهيل اليتيمات" : "Ilaf Care Center", initials: "IL" }
+    { 
+      name: "Sharhan Exchange", 
+      logo: "/images/partners/sharhan-exchange.png",
+      alt: isRTL ? "شركة الشرهان للصرافة" : "Sharhan Exchange"
+    },
+    { 
+      name: "Harbi Exchange", 
+      logo: "/images/partners/harbi-exchange.png",
+      alt: isRTL ? "شركة الحربي للصرافة" : "Harbi Exchange"
+    },
+    { 
+      name: isRTL ? "إيلاف لرعاية وتأهيل اليتيمات" : "Ilaf Care Center", 
+      logo: "/images/partners/ilaf.png",
+      alt: isRTL ? "إيلاف لرعاية وتأهيل اليتيمات" : "Ilaf Care Center"
+    }
   ];
 
   return (
@@ -123,13 +135,17 @@ export default function About() {
             <h3 className="text-3xl font-bold text-primary-green text-center mb-8">
               {isRTL ? "شركاء النجاح" : "Success Partners"}
             </h3>
-            <div className="flex justify-center items-center space-x-12 space-x-reverse">
+            <div className="flex justify-center items-center space-x-16 space-x-reverse flex-wrap gap-8">
               {successPartners.map((partner, index) => (
                 <div key={index} className="text-center" data-testid={`partner-${index}`}>
-                  <div className="w-24 h-24 bg-sugar rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <span className="text-primary-green font-bold text-lg">{partner.initials}</span>
+                  <div className="w-32 h-32 bg-white rounded-xl shadow-md flex items-center justify-center mx-auto mb-4 p-4">
+                    <img 
+                      src={partner.logo} 
+                      alt={partner.alt}
+                      className="max-w-full max-h-full object-contain"
+                    />
                   </div>
-                  <p className="font-semibold text-text-dark">{partner.name}</p>
+                  <p className="font-semibold text-text-dark max-w-[120px] mx-auto leading-tight">{partner.name}</p>
                 </div>
               ))}
             </div>
