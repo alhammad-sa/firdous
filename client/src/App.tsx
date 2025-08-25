@@ -28,7 +28,7 @@ function Router() {
 
   return (
     <div className="min-h-screen flex flex-col bg-sugar">
-      <Navbar />
+      {location !== '/' && <Navbar />}
       <main className="flex-1">
         <Switch>
           <Route path="/" component={Home} />

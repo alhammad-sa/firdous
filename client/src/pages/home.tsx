@@ -5,6 +5,7 @@ import { useLanguage } from "@/hooks/use-language";
 import { Scale, Handshake, Award, Phone, Gavel, Users, Shield, BookOpen, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { NewsArticle } from "@shared/schema";
+import { Navbar } from "@/components/layout/navbar";
 
 function LatestUpdatesSection() {
   const { t, language } = useLanguage();
@@ -143,7 +144,7 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen -mt-20 pt-20">
+      <section className="relative min-h-screen">
         <div className="relative gradient-hero text-white min-h-screen">
           {/* Background overlay */}
           <div 
@@ -155,7 +156,12 @@ export default function Home() {
             }}
           />
           
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-24">
+          {/* Navbar within hero */}
+          <div className="relative z-10">
+            <Navbar />
+          </div>
+          
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-8">
             <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'} lg:w-2/3`}>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="block" data-testid="hero-title-1">{t('hero.title1')}</span>
