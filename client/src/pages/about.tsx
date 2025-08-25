@@ -48,8 +48,8 @@ export default function About() {
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className={`${isRTL ? 'order-2 lg:order-1' : 'order-2 lg:order-2'}`}>
             <img 
-              src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=600" 
-              alt={t('about.title')}
+              src="/images/saudi-flag.jpg" 
+              alt={isRTL ? "علم المملكة العربية السعودية" : "Flag of Saudi Arabia"}
               className="rounded-xl shadow-xl w-full h-auto"
               data-testid="lawyer-photo"
             />
