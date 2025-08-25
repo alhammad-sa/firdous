@@ -67,6 +67,7 @@ export default {
           light: "var(--sugar-light)",
         },
         'primary-green': "var(--primary-green)",
+        'secondary-green': "var(--secondary-green)",
         'accent-gold': "var(--accent-gold)",
         'text-dark': "var(--text-dark)",
         'text-medium': "var(--text-medium)",
