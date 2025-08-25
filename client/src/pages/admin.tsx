@@ -33,7 +33,7 @@ export default function Admin() {
   const [activeSection, setActiveSection] = useState('news-management');
   const [showPassword, setShowPassword] = useState(false);
   const [loginData, setLoginData] = useState({
-    email: '',
+    email: 'admin',
     password: '',
     remember: false
   });
