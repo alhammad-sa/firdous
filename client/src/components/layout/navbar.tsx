@@ -34,7 +34,7 @@ export function Navbar() {
               <img 
                 src={logoImage} 
                 alt={isRTL ? 'شعار شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan Logo'}
-                className="w-16 h-16 object-contain"
+                className="w-20 h-20 object-contain"
               />
               <div className={`${isRTL ? 'mr-3' : 'ml-3'}`}>
                 <h1 className="text-lg font-bold text-primary-green leading-tight">
