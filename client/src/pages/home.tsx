@@ -155,7 +155,7 @@ export default function Home() {
             }}
           />
           
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-32">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-24">
             <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'} lg:w-2/3`}>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="block" data-testid="hero-title-1">{t('hero.title1')}</span>
