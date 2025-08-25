@@ -296,7 +296,7 @@ export default function Home() {
                 </Button>
               </Link>
               <Link href="/services">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary-green px-8 py-4 text-lg font-semibold">
+                <Button size="lg" className="bg-white text-primary-green hover:bg-gray-100 border-2 border-white px-8 py-4 text-lg font-semibold shadow-lg">
                   <BookOpen className={`w-6 h-6 ${isRTL ? 'ml-3' : 'mr-3'}`} />
                   {isRTL ? 'خدماتنا' : 'Our Services'}
                 </Button>
