@@ -377,43 +377,6 @@ export function NewsManagement() {
                 </div>
               </div>
 
-              <div>
-                <Label className="text-sm font-semibold text-text-dark mb-2">
-                  {isRTL ? "صورة المقال" : "Article Image"}
-                </Label>
-                <div className="space-y-3">
-                  <div className="flex flex-col gap-2">
-                    {(uploadedImageUrl || formData.imageUrl) && (
-                      <div className="relative">
-                        <img 
-                          src={uploadedImageUrl || formData.imageUrl || defaultNewsImage} 
-                          alt={isRTL ? "صورة المقال" : "Article image"}
-                          className="w-full h-32 object-cover rounded-lg border"
-                        />
-                        <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
-                          {uploadedImageUrl ? (isRTL ? "صورة مرفوعة" : "Uploaded") : (isRTL ? "صورة افتراضية" : "Default")}
-                        </div>
-                      </div>
-                    )}
-                    <ObjectUploader
-                      maxNumberOfFiles={1}
-                      maxFileSize={10485760}
-                      onGetUploadParameters={handleGetUploadParameters}
-                      onComplete={handleUploadComplete}
-                      buttonClassName="w-full"
-                      data-testid="button-upload-image"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Upload className="w-4 h-4" />
-                        <span>{isRTL ? "رفع صورة جديدة" : "Upload New Image"}</span>
-                      </div>
-                    </ObjectUploader>
-                  </div>
-                  <p className="text-xs text-text-medium">
-                    {isRTL ? "إذا لم ترفع صورة، ستستخدم الصورة الافتراضية" : "If no image is uploaded, the default image will be used"}
-                  </p>
-                </div>
-              </div>
 
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
@@ -466,6 +429,48 @@ export function NewsManagement() {
                     onChange={(e) => setFormData(prev => ({ ...prev, contentEn: e.target.value }))}
                     data-testid="textarea-content-en"
                   />
+                </div>
+              </div>
+
+              {/* Image Upload Section - Moved to bottom */}
+              <div>
+                <Label className="text-sm font-semibold text-text-dark mb-2">
+                  {isRTL ? "صورة المقال" : "Article Image"}
+                </Label>
+                <div className="space-y-3">
+                  <div className="flex flex-col gap-2">
+                    {(uploadedImageUrl || formData.imageUrl) && (
+                      <div className="relative">
+                        <img 
+                          src={uploadedImageUrl || formData.imageUrl || defaultNewsImage} 
+                          alt={isRTL ? "صورة المقال" : "Article image"}
+                          className="w-full h-32 object-cover rounded-lg border"
+                        />
+                        <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                          {uploadedImageUrl ? (isRTL ? "صورة مرفوعة" : "Uploaded") : (isRTL ? "صورة افتراضية" : "Default")}
+                        </div>
+                      </div>
+                    )}
+                    <Button
+                      type="button"
+                      variant="outline"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        // You can click to upload image manually when ready
+                      }}
+                      className="w-full"
+                      data-testid="button-upload-image"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Upload className="w-4 h-4" />
+                        <span>{isRTL ? "رفع صورة (اختياري)" : "Upload Image (Optional)"}</span>
+                      </div>
+                    </Button>
+                  </div>
+                  <p className="text-xs text-text-medium">
+                    {isRTL ? "إذا لم ترفع صورة، ستستخدم الصورة الافتراضية" : "If no image is uploaded, the default image will be used"}
+                  </p>
                 </div>
               </div>
 
