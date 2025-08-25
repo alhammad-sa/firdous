@@ -143,8 +143,8 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen">
-        <div className="relative gradient-hero text-white">
+      <section className="relative min-h-screen -mt-20 pt-20">
+        <div className="relative gradient-hero text-white min-h-screen">
           {/* Background overlay */}
           <div 
             className="absolute inset-0 opacity-20"
@@ -155,7 +155,7 @@ export default function Home() {
             }}
           />
           
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 pt-32">
             <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'} lg:w-2/3`}>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="block" data-testid="hero-title-1">{t('hero.title1')}</span>
