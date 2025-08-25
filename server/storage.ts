@@ -52,46 +52,106 @@ export class MemStorage implements IStorage {
     };
     this.users.set(adminId, admin);
 
-    // Sample news articles
+    // Legal news articles for Firdous Saud Al-Sharhan Law and Consulting Company
     const article1Id = randomUUID();
     const article1: NewsArticle = {
       id: article1Id,
-      title: "التحديثات الجديدة في قانون الشركات السعودي لعام 2024",
-      titleEn: "New Updates in Saudi Company Law for 2024",
-      excerpt: "نظرة شاملة على أهم التعديلات الجديدة في قانون الشركات وتأثيرها على الشركات العاملة في المملكة",
-      excerptEn: "A comprehensive overview of the most important new amendments to the Company Law and their impact on companies operating in the Kingdom",
-      content: "يشهد قانون الشركات السعودي تطورات مهمة في عام 2024 تهدف إلى تعزيز بيئة الأعمال وتحسين الممارسات الحوكمية...",
-      contentEn: "Saudi Company Law is witnessing important developments in 2024 aimed at enhancing the business environment and improving governance practices...",
-      category: "تحديثات قانونية",
-      categoryEn: "Legal Updates",
+      title: "حكم قضائي لصالح شركة صرافة وتوقيع اتفاقيات دولية",
+      titleEn: "Court Ruling for Exchange Company and International Agreements",
+      excerpt: "انتصار قانوني بارز لشركة صرافة ضد هيئة الزكاة والضريبة والجمارك، وتوقيع اتفاقيات دولية استراتيجية.",
+      excerptEn: "A major legal victory for an exchange company against the Zakat, Tax, and Customs Authority, alongside strategic international agreements.",
+      content: "استطعنا اكتساب حكم قضائي لصالح شركة صرافة ضد هيئة الزكاة والضريبة والجمارك، حيث تم رفض دعوى مالية قدرها 1,400,000 ريال خلال مرحلة الاستئناف. كما تم وضع وتوقيع اتفاقية عالمية مع BFC (Bahrain Financing Company) لتنظيم المعاملات المالية والتجارية. إضافة إلى ذلك، تمت متابعة ملفات منازعات مستثمرين بالاشتراك مع السفارة السعودية في المغرب لضمان سلامة الاستثمارات، وصياغة عقود لشركات سعودية مع كيانات أجنبية في مصر بما يكفل الحماية القانونية. كما قدّمنا استشارات متخصصة حول التشريع القضائي الإماراتي ومقارنته بالتشريعات السعودية لضمان مطابقة التزامات المستثمرين.",
+      contentEn: "We secured a court ruling in favor of an exchange company against the Zakat, Tax, and Customs Authority, dismissing a financial claim of SAR 1.4 million at the appeal stage. Additionally, a global agreement was signed with BFC (Bahrain Financing Company) to regulate financial and trade transactions. Investor dispute cases were followed up in collaboration with the Saudi Embassy in Morocco to safeguard investments, while contracts were drafted for Saudi companies with foreign entities in Egypt to ensure legal protection. Specialized consultations were also provided on UAE judicial legislation compared with Saudi laws to ensure investor compliance.",
+      category: "قرارات قضائية",
+      categoryEn: "Judicial Decisions",
       imageUrl: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       published: true,
-      views: 245,
-      publishedAt: new Date("2024-01-15"),
-      createdAt: new Date("2024-01-15"),
-      updatedAt: new Date("2024-01-15"),
+      views: 0,
+      publishedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
     this.newsArticles.set(article1Id, article1);
 
     const article2Id = randomUUID();
     const article2: NewsArticle = {
       id: article2Id,
-      title: "قرار محكمة الاستئناف حول التجارة الإلكترونية",
-      titleEn: "Court of Appeal Decision on E-commerce",
-      excerpt: "تحليل قانوني شامل لقرار محكمة الاستئناف الأخير وتأثيره على شركات التجارة الإلكترونية",
-      excerptEn: "Comprehensive legal analysis of the recent Court of Appeal decision and its impact on e-commerce companies",
-      content: "أصدرت محكمة الاستئناف قراراً مهماً يتعلق بالتجارة الإلكترونية والذي سيكون له تأثير كبير على القطاع...",
-      contentEn: "The Court of Appeal issued an important decision related to e-commerce that will have a significant impact on the sector...",
-      category: "قرارات قضائية",
-      categoryEn: "Court Decisions",
+      title: "تأسيس الهيكل القانوني لمؤسسة حلول النقد",
+      titleEn: "Establishing Legal Framework for Hulool Al-Naqd IT",
+      excerpt: "دعم قانوني متكامل لمؤسسة حلول النقد عبر بناء هيكل قانوني وربطه بالهيئات المعنية.",
+      excerptEn: "Comprehensive legal support for Hulool Al-Naqd through building its legal framework and linking it to relevant authorities.",
+      content: "تم إنشاء الهيكل القانوني لمؤسسة حلول النقد لتقنية المعلومات وربطه بالهيئات والسلطات المعنية، إلى جانب وضع اتفاقيات تقنية وسياسات سرية متوافقة مع قانون حماية البيانات الشخصية في المملكة.",
+      contentEn: "The legal framework for Hulool Al-Naqd IT was established and linked to the relevant authorities, with the implementation of technical agreements and confidentiality policies in line with Saudi Arabia's Personal Data Protection Law.",
+      category: "تحديثات قانونية",
+      categoryEn: "Legal Updates",
       imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
       published: true,
-      views: 189,
-      publishedAt: new Date("2024-01-10"),
-      createdAt: new Date("2024-01-10"),
-      updatedAt: new Date("2024-01-10"),
+      views: 0,
+      publishedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
     };
     this.newsArticles.set(article2Id, article2);
+
+    const article3Id = randomUUID();
+    const article3: NewsArticle = {
+      id: article3Id,
+      title: "مواءمة تراخيص وسياسات مكافحة غسل الأموال لشركة الحربي للصرافة",
+      titleEn: "Licensing and AML Compliance Alignment for Al-Harbi Exchange",
+      excerpt: "إدارة شاملة لتراخيص الحربي للصرافة مع مواءمة سياسات مكافحة غسل الأموال.",
+      excerptEn: "Comprehensive management of licensing for Al-Harbi Exchange with AML compliance alignment.",
+      content: "تمت إدارة ملفات التراخيص والتصاريح لشركة الحربي للصرافة بالتنسيق مع البنك المركزي السعودي، مع مواءمة سياسات مكافحة غسل الأموال وتمويل الإرهاب وفقاً للإجراءات المعمول بها.",
+      contentEn: "Licensing and permit files for Al-Harbi Exchange were managed in coordination with the Saudi Central Bank, ensuring Anti-Money Laundering (AML) and Counter-Terrorism Financing policies were aligned with applicable regulations.",
+      category: "تحديثات قانونية",
+      categoryEn: "Legal Updates",
+      imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      published: true,
+      views: 0,
+      publishedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.newsArticles.set(article3Id, article3);
+
+    const article4Id = randomUUID();
+    const article4: NewsArticle = {
+      id: article4Id,
+      title: "تطوير معايير \"اعرف عميلك\" لشركة بازيد للصرافة",
+      titleEn: "Enhancing KYC Standards for Bazid Exchange",
+      excerpt: "تعزيز معايير الامتثال لشركة بازيد للصرافة عبر تطوير سياسات KYC.",
+      excerptEn: "Strengthening compliance for Bazid Exchange through advanced KYC policies.",
+      content: "أجرت شركة بازيد للصرافة إجراءات تطوير معايير \"اعرف عميلك\" (KYC) وخطط الامتثال المرتبطة بها، بما يتماشى مع أفضل الممارسات المحلية والدولية.",
+      contentEn: "Bazid Exchange undertook measures to enhance \"Know Your Customer\" (KYC) standards and related compliance plans, aligning with both local and international best practices.",
+      category: "تحديثات قانونية",
+      categoryEn: "Legal Updates",
+      imageUrl: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      published: true,
+      views: 0,
+      publishedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.newsArticles.set(article4Id, article4);
+
+    const article5Id = randomUUID();
+    const article5: NewsArticle = {
+      id: article5Id,
+      title: "إنجازات قانونية لشركة عبدالرحمن الشرهان وشركاه للصرافة",
+      titleEn: "Legal Achievements for Abdulrahman Al-Sharhan & Partners Exchange",
+      excerpt: "إدارة متكاملة للشؤون القانونية والنزاعات وعقود الموظفين لصالح شركة الشرهان للصرافة.",
+      excerptEn: "Comprehensive legal management of disputes and employment contracts for Al-Sharhan Exchange.",
+      content: "تولت الشركة إدارة الشؤون القانونية وصياغة عقد Global Blue بما يتوافق مع الأنظمة المحلية والدولية، إضافة إلى معالجة النزاعات التجارية وإعداد مذكرات رد مدعمة بالأحكام القضائية. كما قامت بإدارة عقود الموظفين وإعداد السياسات الداخلية للموارد البشرية بما يتفق مع تشريعات العمل السعودية. كذلك قدّمت المشورة بشأن تسويات الموظفين والنزاعات العمالية أمام المحاكم، وشاركت في مباحثات تسويات استراتيجية مع جهات محلية وعالمية. ومن أبرز الإنجازات إسقاط دعوى ضريبية بقيمة 1.4 مليون ريال في مرحلة الاستئناف.",
+      contentEn: "The firm managed all legal affairs, including drafting and reviewing the Global Blue contract to align with local and international laws, handling commercial disputes, and preparing defense memoranda supported by judicial rulings. It also managed employment contracts at all levels, developed HR policies in line with Saudi labor regulations, and provided advice on employee settlements and labor disputes before the courts. Strategic settlement negotiations were conducted with local and international parties. A key achievement was the dismissal of a SAR 1.4 million tax claim at the appeal stage.",
+      category: "قرارات قضائية",
+      categoryEn: "Judicial Decisions",
+      imageUrl: "https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=400",
+      published: true,
+      views: 0,
+      publishedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.newsArticles.set(article5Id, article5);
   }
 
   // User methods
