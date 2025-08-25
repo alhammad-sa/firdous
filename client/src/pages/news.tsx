@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { useLanguage } from "@/hooks/use-language";
-import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { Search, Eye, Filter, ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { NewsArticle } from "@shared/schema";
 
@@ -18,11 +17,6 @@ export default function News() {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedArticle, setSelectedArticle] = useState<NewsArticle | null>(null);
   const articlesPerPage = 6;
-  
-  const { ref: headerRef, isIntersecting: headerVisible } = useIntersectionObserver({ threshold: 0.1 });
-  const { ref: filtersRef, isIntersecting: filtersVisible } = useIntersectionObserver({ threshold: 0.1 });
-  const { ref: articlesRef, isIntersecting: articlesVisible } = useIntersectionObserver({ threshold: 0.1 });
-  const { ref: paginationRef, isIntersecting: paginationVisible } = useIntersectionObserver({ threshold: 0.1 });
 
   const { data: articles = [], isLoading } = useQuery<NewsArticle[]>({
     queryKey: ['/api/news'],
@@ -90,7 +84,7 @@ export default function News() {
   return (
     <div className="py-20 bg-sugar-light min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div ref={headerRef} className={`text-center mb-12 transition-all duration-1000 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-primary-green mb-6" data-testid="news-title">
             {isRTL ? "الأخبار والمقالات القانونية" : "Legal News and Articles"}
           </h1>
@@ -100,7 +94,7 @@ export default function News() {
         </div>
 
         {/* Search and Filter */}
-        <div ref={filtersRef} className={`flex flex-col md:flex-row gap-4 mb-8 transition-all duration-1000 delay-200 ${filtersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="flex-1">
             <div className="relative">
               <Input
@@ -141,18 +135,13 @@ export default function News() {
         </div>
 
         {/* News Articles */}
-        <div ref={articlesRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {paginatedArticles.map((article, index) => {
-            const delay = 400 + (index * 150);
-            return (
-              <Card 
-                key={article.id} 
-                className={`bg-white shadow-sm hover:shadow-lg transition-all duration-1000 overflow-hidden transform ${
-                  articlesVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
-                }`}
-                style={{ transitionDelay: `${delay}ms` }}
-                data-testid={`article-card-${index}`}
-              >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+          {paginatedArticles.map((article, index) => (
+            <Card 
+              key={article.id} 
+              className="bg-white shadow-sm hover:shadow-lg transition-all overflow-hidden"
+              data-testid={`article-card-${index}`}
+            >
               {article.imageUrl && (
                 <img 
                   src={article.imageUrl} 
@@ -227,13 +216,12 @@ export default function News() {
                 </div>
               </CardContent>
             </Card>
-            );
-          })}
+          ))}
         </div>
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div ref={paginationRef} className={`flex justify-center transition-all duration-1000 delay-600 ${paginationVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div className="flex justify-center">
             <div className="flex items-center space-x-2 space-x-reverse">
               <Button
                 variant="outline"
