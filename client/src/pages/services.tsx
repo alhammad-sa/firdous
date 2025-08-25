@@ -71,7 +71,7 @@ export default function Services() {
               {t('services.title')}
             </h1>
           </div>
-          <p className="text-xl lg:text-2xl text-text-medium max-w-4xl mx-auto leading-relaxed font-light" data-testid="services-subtitle">
+          <p className="text-xl lg:text-2xl text-text-medium max-w-4xl mx-auto leading-relaxed font-light whitespace-nowrap" data-testid="services-subtitle">
             {t('services.subtitle')}
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-primary-green to-accent-gold mx-auto mt-8 rounded-full"></div>
