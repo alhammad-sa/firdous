@@ -154,17 +154,9 @@ export default function About() {
         {/* Success Partners */}
         <Card ref={partnersRef} className={`bg-white p-12 shadow-lg hover:shadow-2xl transition-all duration-700 relative overflow-hidden group ${partnersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="partners-section">
           <CardContent className="relative z-10">
-            <div className="flex items-center justify-center mb-8">
-              <div className={`w-12 h-12 bg-gradient-to-r from-primary-green to-accent-gold rounded-full flex items-center justify-center ${isRTL ? 'ml-4' : 'mr-4'} transition-all duration-1000 ${partnersVisible ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 rotate-180'}`}>
-                <Award className="text-white w-6 h-6" />
-              </div>
-              <h3 className={`text-3xl lg:text-4xl font-bold text-primary-green transition-all duration-1000 delay-200 ${partnersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-                {isRTL ? "شركاء النجاح" : "Success Partners"}
-              </h3>
-              <div className={`w-12 h-12 bg-gradient-to-r from-accent-gold to-primary-green rounded-full flex items-center justify-center ${isRTL ? 'mr-4' : 'ml-4'} transition-all duration-1000 delay-400 ${partnersVisible ? 'opacity-100 scale-100 rotate-0' : 'opacity-0 scale-50 -rotate-180'}`}>
-                <Users className="text-white w-6 h-6" />
-              </div>
-            </div>
+            <h3 className={`text-3xl lg:text-4xl font-bold text-primary-green text-center mb-8 transition-all duration-1000 delay-200 ${partnersVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+              {isRTL ? "شركاء النجاح" : "Success Partners"}
+            </h3>
             <div className="flex justify-center items-center space-x-16 space-x-reverse flex-wrap gap-8">
               {successPartners.map((partner, index) => (
                 <div 
