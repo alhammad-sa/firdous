@@ -33,7 +33,7 @@ export default function Admin() {
   const [activeSection, setActiveSection] = useState('news-management');
   const [showPassword, setShowPassword] = useState(false);
   const [loginData, setLoginData] = useState({
-    email: 'admin',
+    username: '',
     password: '',
     remember: false
   });
@@ -59,7 +59,7 @@ export default function Admin() {
       localStorage.setItem('admin_user', JSON.stringify(data.user));
       setIsLoggedIn(true);
       setCurrentUser(data.user);
-      setLoginData({ email: '', password: '', remember: false });
+      setLoginData({ username: '', password: '', remember: false });
       toast({
         title: isRTL ? "تم تسجيل الدخول بنجاح" : "Login Successful",
         description: isRTL ? "مرحباً بك في لوحة التحكم" : "Welcome to the dashboard",
@@ -76,7 +76,7 @@ export default function Admin() {
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!loginData.email || !loginData.password) {
+    if (!loginData.username || !loginData.password) {
       toast({
         title: isRTL ? "خطأ في النموذج" : "Form Error",
         description: isRTL ? "يرجى ملء جميع الحقول" : "Please fill in all fields",
@@ -84,7 +84,7 @@ export default function Admin() {
       });
       return;
     }
-    loginMutation.mutate({ email: loginData.email, password: loginData.password });
+    loginMutation.mutate({ email: loginData.username, password: loginData.password });
   };
 
   const handleLogout = () => {
@@ -148,17 +148,17 @@ export default function Admin() {
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-6" data-testid="admin-login-form">
               <div>
-                <Label htmlFor="admin-email" className="text-sm font-semibold text-text-dark mb-2">
-                  {t('admin.login.email')}
+                <Label htmlFor="admin-username" className="text-sm font-semibold text-text-dark mb-2">
+                  {isRTL ? "اسم المستخدم" : "Username"}
                 </Label>
                 <Input
-                  id="admin-email"
-                  type="email"
+                  id="admin-username"
+                  type="text"
                   required
-                  value={loginData.email}
-                  onChange={(e) => setLoginData(prev => ({ ...prev, email: e.target.value }))}
+                  value={loginData.username}
+                  onChange={(e) => setLoginData(prev => ({ ...prev, username: e.target.value }))}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent-gold focus:border-transparent"
-                  data-testid="input-admin-email"
+                  data-testid="input-admin-username"
                 />
               </div>
 
