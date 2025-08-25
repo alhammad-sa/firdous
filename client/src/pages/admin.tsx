@@ -50,7 +50,7 @@ export default function Admin() {
   });
 
   const loginMutation = useMutation({
-    mutationFn: async (credentials: { email: string; password: string }) => {
+    mutationFn: async (credentials: { username: string; password: string }) => {
       const response = await apiRequest("POST", "/api/auth/login", credentials);
       return response.json() as Promise<LoginResponse>;
     },
@@ -84,7 +84,7 @@ export default function Admin() {
       });
       return;
     }
-    loginMutation.mutate({ email: loginData.username, password: loginData.password });
+    loginMutation.mutate({ username: loginData.username, password: loginData.password });
   };
 
   const handleLogout = () => {
