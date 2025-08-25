@@ -102,7 +102,7 @@ export default function Home() {
                     data-testid={`feature-card-${index}`}
                   >
                     <CardContent className="pt-6">
-                      <div className="w-16 h-16 bg-primary-green rounded-full flex items-center justify-center mx-auto mb-6">
+                      <div className={`w-16 h-16 ${index === 1 ? 'forest-green-bg' : 'bg-primary-green'} rounded-full flex items-center justify-center mx-auto mb-6`}>
                         <IconComponent className="text-white w-8 h-8" />
                       </div>
                       <h3 className="text-xl font-bold text-primary-green mb-4" data-testid={`feature-title-${index}`}>
