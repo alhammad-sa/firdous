@@ -59,14 +59,13 @@ export default function About() {
         {/* Lawyer Biography */}
         <div ref={heroRef} className="grid lg:grid-cols-2 gap-12 items-center mb-20">
           <div className={`${isRTL ? 'order-2 lg:order-1' : 'order-2 lg:order-2'} transition-all duration-1000 ${heroVisible ? 'opacity-100 translate-x-0 scale-100' : `opacity-0 ${isRTL ? 'translate-x-10' : '-translate-x-10'} scale-95`}`}>
-            <div className="relative group">
+            <div className="relative">
               <img 
                 src="/images/lady-justice-saudi.jpg" 
                 alt={isRTL ? "العدالة" : "Lady Justice"}
-                className="rounded-xl shadow-2xl w-full h-auto transform group-hover:scale-105 transition-all duration-500"
+                className="rounded-xl shadow-2xl w-full h-auto"
                 data-testid="lawyer-photo"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-primary-green/20 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </div>
           </div>
           <div className={`${isRTL ? 'order-1 lg:order-2' : 'order-1 lg:order-1'} transition-all duration-1000 delay-300 ${heroVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${isRTL ? '-translate-x-10' : 'translate-x-10'}`}`}>
