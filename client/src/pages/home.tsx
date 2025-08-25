@@ -315,14 +315,14 @@ export default function Home() {
         </div>
 
         {/* Call to Action Section */}
-        <div className="bg-gradient-to-r from-primary-green to-secondary-green py-20">
+        <div className="bg-sugar py-20">
           <div ref={ctaRef} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className={`text-4xl lg:text-5xl font-bold text-white mb-8 transition-all duration-1000 ${
+            <h2 className={`text-4xl lg:text-5xl font-bold text-primary-green mb-8 transition-all duration-1000 ${
               ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               {isRTL ? 'هل تحتاج إلى استشارة قانونية؟' : 'Need Legal Consultation?'}
             </h2>
-            <p className={`text-xl text-gray-200 mb-12 leading-relaxed transition-all duration-1000 delay-200 ${
+            <p className={`text-xl text-text-medium mb-12 leading-relaxed transition-all duration-1000 delay-200 ${
               ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               {isRTL 
@@ -333,13 +333,13 @@ export default function Home() {
               ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
             }`}>
               <Link href="/contact">
-                <Button size="lg" className="bg-accent-gold text-white hover:bg-accent-gold/90 px-8 py-4 text-lg font-semibold shadow-lg transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                <Button size="lg" className="bg-primary-green text-white hover:bg-primary-green/90 px-8 py-4 text-lg font-semibold shadow-lg transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
                   <Phone className={`w-6 h-6 ${isRTL ? 'ml-3' : 'mr-3'}`} />
                   {isRTL ? 'تواصل معنا' : 'Contact Us'}
                 </Button>
               </Link>
               <Link href="/services">
-                <Button size="lg" className="bg-white text-primary-green hover:bg-gray-100 border-2 border-white px-8 py-4 text-lg font-semibold shadow-lg transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
+                <Button size="lg" className="bg-white text-primary-green hover:bg-gray-100 border-2 border-primary-green px-8 py-4 text-lg font-semibold shadow-lg transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
                   <BookOpen className={`w-6 h-6 ${isRTL ? 'ml-3' : 'mr-3'}`} />
                   {isRTL ? 'خدماتنا' : 'Our Services'}
                 </Button>
