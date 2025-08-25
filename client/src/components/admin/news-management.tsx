@@ -212,10 +212,21 @@ export function NewsManagement() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!formData.title || !formData.excerpt || !formData.content || !formData.category) {
+    // Only require title for drafts, all fields for published articles
+    if (!formData.title) {
       toast({
         title: isRTL ? "خطأ في النموذج" : "Form Error",
-        description: isRTL ? "يرجى ملء جميع الحقول المطلوبة" : "Please fill in all required fields",
+        description: isRTL ? "العنوان مطلوب" : "Title is required",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // If trying to publish, require all fields
+    if (formData.published && (!formData.excerpt || !formData.content || !formData.category)) {
+      toast({
+        title: isRTL ? "خطأ في النموذج" : "Form Error",
+        description: isRTL ? "جميع الحقول مطلوبة لنشر المقال" : "All fields are required to publish the article",
         variant: "destructive",
       });
       return;
@@ -344,11 +355,10 @@ export function NewsManagement() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="category" className="text-sm font-semibold text-text-dark mb-2">
-                    {isRTL ? "الفئة (عربي) *" : "Category (Arabic) *"}
+                    {isRTL ? "الفئة (عربي)" : "Category (Arabic)"}
                   </Label>
                   <Input
                     id="category"
-                    required
                     value={formData.category}
                     onChange={(e) => setFormData(prev => ({ ...prev, category: e.target.value }))}
                     data-testid="input-category"
@@ -408,11 +418,10 @@ export function NewsManagement() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="excerpt" className="text-sm font-semibold text-text-dark mb-2">
-                    {isRTL ? "المقدمة (عربي) *" : "Excerpt (Arabic) *"}
+                    {isRTL ? "المقدمة (عربي)" : "Excerpt (Arabic)"}
                   </Label>
                   <Textarea
                     id="excerpt"
-                    required
                     rows={3}
                     value={formData.excerpt}
                     onChange={(e) => setFormData(prev => ({ ...prev, excerpt: e.target.value }))}
@@ -436,11 +445,10 @@ export function NewsManagement() {
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <Label htmlFor="content" className="text-sm font-semibold text-text-dark mb-2">
-                    {isRTL ? "المحتوى (عربي) *" : "Content (Arabic) *"}
+                    {isRTL ? "المحتوى (عربي)" : "Content (Arabic)"}
                   </Label>
                   <Textarea
                     id="content"
-                    required
                     rows={8}
                     value={formData.content}
                     onChange={(e) => setFormData(prev => ({ ...prev, content: e.target.value }))}
