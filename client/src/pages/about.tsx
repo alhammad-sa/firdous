@@ -108,44 +108,41 @@ export default function About() {
 
         {/* Company Vision, Mission, Values */}
         <div ref={cardsRef} className="grid md:grid-cols-3 gap-8 mb-16">
-          <Card className={`bg-white p-8 shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-700 group ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="vision-card">
+          <Card className={`bg-white p-8 shadow-lg text-center ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="vision-card">
             <CardContent className="pt-6">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-green to-secondary-green rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
-                <Eye className="text-white w-8 h-8 group-hover:animate-pulse" />
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-green to-secondary-green rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Eye className="text-white w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-primary-green mb-4 group-hover:text-secondary-green transition-colors">{t('about.vision.title')}</h3>
+              <h3 className="text-2xl font-bold text-primary-green mb-4">{t('about.vision.title')}</h3>
               <p className="text-text-medium leading-relaxed" data-testid="vision-content">
                 {t('about.vision.content')}
               </p>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-green/5 to-secondary-green/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </CardContent>
           </Card>
 
-          <Card className={`bg-white p-8 shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-700 delay-200 group relative overflow-hidden ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="mission-card">
-            <CardContent className="pt-6 relative z-10">
-              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
-                <Target className="text-white w-8 h-8 group-hover:rotate-12 transition-transform duration-500" />
+          <Card className={`bg-white p-8 shadow-lg text-center transition-all duration-700 delay-200 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="mission-card">
+            <CardContent className="pt-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-accent-gold to-yellow-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Target className="text-white w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-primary-green mb-4 group-hover:text-accent-gold transition-colors">{t('about.mission.title')}</h3>
+              <h3 className="text-2xl font-bold text-primary-green mb-4">{t('about.mission.title')}</h3>
               <p className="text-text-medium leading-relaxed" data-testid="mission-content">
                 {t('about.mission.content')}
               </p>
-              <div className="absolute inset-0 bg-gradient-to-r from-accent-gold/5 to-yellow-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </CardContent>
           </Card>
 
-          <Card className={`bg-white p-8 shadow-lg text-center hover:shadow-2xl hover:-translate-y-2 transform transition-all duration-700 delay-400 group relative overflow-hidden ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="values-card">
-            <CardContent className="pt-6 relative z-10">
-              <div className="w-16 h-16 bg-gradient-to-br from-primary-green to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-500 shadow-lg">
-                <Heart className="text-white w-8 h-8 group-hover:animate-bounce" />
+          <Card className={`bg-white p-8 shadow-lg text-center transition-all duration-700 delay-400 ${cardsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} data-testid="values-card">
+            <CardContent className="pt-6">
+              <div className="w-16 h-16 bg-gradient-to-br from-primary-green to-red-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <Heart className="text-white w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-primary-green mb-4 group-hover:text-red-500 transition-colors">{t('about.values.title')}</h3>
+              <h3 className="text-2xl font-bold text-primary-green mb-4">{t('about.values.title')}</h3>
               <div className="text-text-medium space-y-2">
                 {t('about.values.items').split(',').map((value: string, index: number) => (
-                  <div key={index} className={`transition-all duration-500 delay-${index * 100} ${cardsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'} hover:text-primary-green font-medium`} data-testid={`value-${index}`}>{value.trim()}</div>
+                  <div key={index} className={`transition-all duration-500 delay-${index * 100} ${cardsVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-2'} font-medium`} data-testid={`value-${index}`}>{value.trim()}</div>
                 ))}
               </div>
-              <div className="absolute inset-0 bg-gradient-to-r from-primary-green/5 to-red-500/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             </CardContent>
           </Card>
         </div>
