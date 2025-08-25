@@ -48,20 +48,12 @@ export function Navbar() {
 
           {/* Centered Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex flex-col items-center" data-testid="logo-link">
+            <Link href="/" className="flex items-center" data-testid="logo-link">
               <img 
                 src={logoImage} 
                 alt={isRTL ? 'شعار شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan Logo'}
-                className="w-12 h-12 object-contain mb-1"
+                className="w-16 h-16 object-contain"
               />
-              <div className="text-center">
-                <h1 className="text-sm font-semibold text-gray-900 leading-tight">
-                  {isRTL ? 'شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan'}
-                </h1>
-                <p className="text-xs text-gray-600 whitespace-nowrap">
-                  {isRTL ? 'للمحاماة والاستشارات القانونية' : 'Law and Consulting Co'}
-                </p>
-              </div>
             </Link>
           </div>
 
