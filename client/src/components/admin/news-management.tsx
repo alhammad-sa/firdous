@@ -11,9 +11,12 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/use-language";
-import { Plus, Edit, Trash2, Eye } from "lucide-react";
+import { Plus, Edit, Trash2, Eye, Upload, Image } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
+import { ObjectUploader } from "@/components/ObjectUploader";
 import type { NewsArticle, InsertNewsArticle } from "@shared/schema";
+import type { UploadResult } from "@uppy/core";
+import defaultNewsImage from "@assets/pexels-ekaterina-bolovtsova-6077326_1756149288566.jpg";
 
 export function NewsManagement() {
   const { t, language } = useLanguage();
@@ -32,9 +35,11 @@ export function NewsManagement() {
     contentEn: '',
     category: '',
     categoryEn: '',
-    imageUrl: '',
+    imageUrl: defaultNewsImage,
     published: false
   });
+
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string>('');
 
   const { data: articles = [], isLoading } = useQuery<NewsArticle[]>({
     queryKey: ['/api/news'],
@@ -141,9 +146,67 @@ export function NewsManagement() {
       contentEn: '',
       category: '',
       categoryEn: '',
-      imageUrl: '',
+      imageUrl: defaultNewsImage,
       published: false
     });
+    setUploadedImageUrl('');
+  };
+
+  const handleGetUploadParameters = async () => {
+    try {
+      const token = localStorage.getItem('admin_token');
+      const response = await fetch('/api/objects/upload', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      return {
+        method: 'PUT' as const,
+        url: data.uploadURL,
+      };
+    } catch (error) {
+      console.error('Error getting upload URL:', error);
+      throw error;
+    }
+  };
+
+  const handleUploadComplete = async (result: UploadResult<Record<string, unknown>, Record<string, unknown>>) => {
+    try {
+      if (result.successful && result.successful.length > 0) {
+        const uploadedFile = result.successful[0];
+        const imageURL = uploadedFile.uploadURL;
+        
+        // Set ACL policy for the uploaded image
+        const token = localStorage.getItem('admin_token');
+        const response = await fetch('/api/objects/set-acl', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ imageURL }),
+        });
+        
+        if (response.ok) {
+          const data = await response.json();
+          setUploadedImageUrl(data.objectPath);
+          toast({
+            title: isRTL ? "تم رفع الصورة" : "Image Uploaded",
+            description: isRTL ? "تم رفع الصورة بنجاح" : "Image uploaded successfully",
+          });
+        }
+      }
+    } catch (error) {
+      console.error('Error handling upload completion:', error);
+      toast({
+        title: isRTL ? "خطأ في رفع الصورة" : "Upload Error",
+        description: isRTL ? "حدث خطأ أثناء رفع الصورة" : "Error occurred while uploading image",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -158,15 +221,29 @@ export function NewsManagement() {
       return;
     }
 
+    const dataToSubmit: InsertNewsArticle = {
+      title: formData.title || '',
+      titleEn: formData.titleEn || '',
+      excerpt: formData.excerpt || '',
+      excerptEn: formData.excerptEn || '',
+      content: formData.content || '',
+      contentEn: formData.contentEn || '',
+      category: formData.category || '',
+      categoryEn: formData.categoryEn || '',
+      imageUrl: uploadedImageUrl || defaultNewsImage,
+      published: formData.published || false
+    };
+
     if (editingArticle) {
-      updateMutation.mutate({ id: editingArticle.id, data: formData as InsertNewsArticle });
+      updateMutation.mutate({ id: editingArticle.id, data: dataToSubmit });
     } else {
-      createMutation.mutate(formData as InsertNewsArticle);
+      createMutation.mutate(dataToSubmit);
     }
   };
 
   const handleEdit = (article: NewsArticle) => {
     setEditingArticle(article);
+    setUploadedImageUrl(article.imageUrl || '');
     setFormData({
       title: article.title,
       titleEn: article.titleEn || '',
@@ -176,7 +253,7 @@ export function NewsManagement() {
       contentEn: article.contentEn || '',
       category: article.category,
       categoryEn: article.categoryEn || '',
-      imageUrl: article.imageUrl || '',
+      imageUrl: article.imageUrl || defaultNewsImage,
       published: article.published
     });
   };
@@ -291,16 +368,41 @@ export function NewsManagement() {
               </div>
 
               <div>
-                <Label htmlFor="imageUrl" className="text-sm font-semibold text-text-dark mb-2">
-                  {isRTL ? "رابط الصورة" : "Image URL"}
+                <Label className="text-sm font-semibold text-text-dark mb-2">
+                  {isRTL ? "صورة المقال" : "Article Image"}
                 </Label>
-                <Input
-                  id="imageUrl"
-                  type="url"
-                  value={formData.imageUrl || ''}
-                  onChange={(e) => setFormData(prev => ({ ...prev, imageUrl: e.target.value }))}
-                  data-testid="input-image-url"
-                />
+                <div className="space-y-3">
+                  <div className="flex flex-col gap-2">
+                    {(uploadedImageUrl || formData.imageUrl) && (
+                      <div className="relative">
+                        <img 
+                          src={uploadedImageUrl || formData.imageUrl || defaultNewsImage} 
+                          alt={isRTL ? "صورة المقال" : "Article image"}
+                          className="w-full h-32 object-cover rounded-lg border"
+                        />
+                        <div className="absolute top-2 right-2 bg-black bg-opacity-50 text-white px-2 py-1 rounded text-xs">
+                          {uploadedImageUrl ? (isRTL ? "صورة مرفوعة" : "Uploaded") : (isRTL ? "صورة افتراضية" : "Default")}
+                        </div>
+                      </div>
+                    )}
+                    <ObjectUploader
+                      maxNumberOfFiles={1}
+                      maxFileSize={10485760}
+                      onGetUploadParameters={handleGetUploadParameters}
+                      onComplete={handleUploadComplete}
+                      buttonClassName="w-full"
+                      data-testid="button-upload-image"
+                    >
+                      <div className="flex items-center gap-2">
+                        <Upload className="w-4 h-4" />
+                        <span>{isRTL ? "رفع صورة جديدة" : "Upload New Image"}</span>
+                      </div>
+                    </ObjectUploader>
+                  </div>
+                  <p className="text-xs text-text-medium">
+                    {isRTL ? "إذا لم ترفع صورة، ستستخدم الصورة الافتراضية" : "If no image is uploaded, the default image will be used"}
+                  </p>
+                </div>
               </div>
 
               <div className="grid md:grid-cols-2 gap-6">
