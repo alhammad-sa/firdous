@@ -61,7 +61,7 @@ export default function Services() {
   const ArrowIcon = isRTL ? ArrowRight : ArrowLeft;
 
   return (
-    <div className="py-20 bg-gradient-to-br from-white via-sugar/30 to-white min-h-screen">
+    <div className="py-20 bg-sugar min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Section */}
         <div ref={headerRef} className={`text-center mb-20 transition-all duration-1000 ${headerVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
