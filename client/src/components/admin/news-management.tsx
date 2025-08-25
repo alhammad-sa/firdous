@@ -13,7 +13,6 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/hooks/use-language";
 import { Plus, Edit, Trash2, Eye, Upload, Image } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
-import { ObjectUploader } from "@/components/ObjectUploader";
 import type { NewsArticle, InsertNewsArticle } from "@shared/schema";
 import type { UploadResult } from "@uppy/core";
 import defaultNewsImage from "@assets/saudi_1756151692465.jpg";
@@ -451,19 +450,30 @@ export function NewsManagement() {
                         </div>
                       </div>
                     )}
-                    <ObjectUploader
-                      maxNumberOfFiles={1}
-                      maxFileSize={10485760}
-                      onGetUploadParameters={handleGetUploadParameters}
-                      onComplete={handleUploadComplete}
-                      buttonClassName="w-full border border-gray-300 hover:bg-gray-50"
-                      data-testid="button-upload-image"
-                    >
-                      <div className="flex items-center gap-2">
-                        <Upload className="w-4 h-4" />
-                        <span>{isRTL ? "رفع صورة (اختياري)" : "Upload Image (Optional)"}</span>
-                      </div>
-                    </ObjectUploader>
+                    <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        id="image-upload"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            // For now, just show a message that image was selected
+                            toast({
+                              title: isRTL ? "تم اختيار الصورة" : "Image Selected",
+                              description: isRTL ? `تم اختيار: ${file.name}` : `Selected: ${file.name}`,
+                            });
+                          }
+                        }}
+                      />
+                      <label htmlFor="image-upload" className="cursor-pointer flex flex-col items-center gap-2">
+                        <Upload className="w-8 h-8 text-gray-400" />
+                        <span className="text-sm text-gray-600">
+                          {isRTL ? "اضغط لاختيار صورة (اختياري)" : "Click to select image (optional)"}
+                        </span>
+                      </label>
+                    </div>
                   </div>
                   <p className="text-xs text-text-medium">
                     {isRTL ? "إذا لم ترفع صورة، ستستخدم الصورة الافتراضية" : "If no image is uploaded, the default image will be used"}
