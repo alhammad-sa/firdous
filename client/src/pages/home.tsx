@@ -304,8 +304,8 @@ export default function Home() {
               }`}>
                 <div className="aspect-video rounded-2xl shadow-2xl overflow-hidden group hover:scale-105 transition-transform duration-500">
                   <img 
-                    src="/images/lady-justice-saudi.jpg" 
-                    alt={isRTL ? "العدالة" : "Lady Justice"}
+                    src="/images/saudi-flag.jpg" 
+                    alt={isRTL ? "علم المملكة العربية السعودية" : "Flag of Saudi Arabia"}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
