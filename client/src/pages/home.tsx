@@ -4,11 +4,13 @@ import { Card, CardContent } from "@/components/ui/card";
 import { useLanguage } from "@/hooks/use-language";
 import { Scale, Handshake, Award, Phone, Gavel, Users, Shield, BookOpen, ArrowRight } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import type { NewsArticle } from "@shared/schema";
 
 function LatestUpdatesSection() {
   const { t, language } = useLanguage();
   const isRTL = language.direction === 'rtl';
+  const { ref: sectionRef, isIntersecting: sectionVisible } = useIntersectionObserver({ threshold: 0.1 });
 
   const { data: articles = [], isLoading } = useQuery<NewsArticle[]>({
     queryKey: ['/api/news'],
@@ -38,9 +40,9 @@ function LatestUpdatesSection() {
   if (isLoading) return null;
 
   return (
-    <div className="bg-gradient-to-br from-sugar to-sugar-light py-20">
+    <div ref={sectionRef} className="bg-gradient-to-br from-sugar to-sugar-light py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transition-all duration-1000 ${sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-primary-green mb-6">
             {isRTL 
               ? 'اقرأ آخر التحديثات حول قوانين وأنظمة المملكة' 
@@ -57,8 +59,15 @@ function LatestUpdatesSection() {
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             {latestArticles.map((article, index) => (
               <Card 
-                key={article.id} 
-                className="group bg-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden"
+                key={article.id}
+                className={`group bg-white shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-1 overflow-hidden ${
+                  sectionVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-20'
+                }`}
+                style={{
+                  transitionDelay: `${index * 200}ms`
+                }}
               >
                 {article.imageUrl && (
                   <div className="aspect-video overflow-hidden">
@@ -121,6 +130,11 @@ function LatestUpdatesSection() {
 export default function Home() {
   const { t, language } = useLanguage();
   const isRTL = language.direction === 'rtl';
+  
+  const { ref: heroRef, isIntersecting: heroVisible } = useIntersectionObserver({ threshold: 0.2, triggerOnce: true });
+  const { ref: featuresRef, isIntersecting: featuresVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const { ref: aboutRef, isIntersecting: aboutVisible } = useIntersectionObserver({ threshold: 0.1 });
+  const { ref: ctaRef, isIntersecting: ctaVisible } = useIntersectionObserver({ threshold: 0.1 });
 
   const keyFeatures = [
     {
@@ -155,8 +169,10 @@ export default function Home() {
             }}
           />
           
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-            <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'} lg:w-2/3`}>
+          <div ref={heroRef} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div className={`text-center ${isRTL ? 'lg:text-right' : 'lg:text-left'} lg:w-2/3 transition-all duration-1000 ${
+              heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <h1 className="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
                 <span className="block" data-testid="hero-title-1">{t('hero.title1')}</span>
                 <span className="block text-accent-gold" data-testid="hero-title-2">{t('hero.title2')}</span>
@@ -196,8 +212,10 @@ export default function Home() {
 
         {/* Key Features */}
         <div className="bg-white py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
+          <div ref={featuresRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className={`text-center mb-16 transition-all duration-1000 ${
+              featuresVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <h2 className="text-4xl lg:text-5xl font-bold text-primary-green mb-6" data-testid="features-title">
                 {t('features.title')}
               </h2>
@@ -212,11 +230,16 @@ export default function Home() {
                 return (
                   <Card 
                     key={index} 
-                    className="group text-center p-10 bg-gradient-to-br from-sugar-light to-white shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                    className={`group text-center p-10 bg-gradient-to-br from-sugar-light to-white shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-2 ${
+                      featuresVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-10 scale-95'
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 200}ms`
+                    }}
                     data-testid={`feature-card-${index}`}
                   >
                     <CardContent className="pt-6">
-                      <div className="w-20 h-20 bg-gradient-to-br from-primary-green to-secondary-green rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-20 h-20 bg-gradient-to-br from-primary-green to-secondary-green rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 group-hover:rotate-6 transition-all duration-300 shadow-lg group-hover:shadow-xl">
                         <IconComponent className="text-white w-10 h-10" />
                       </div>
                       <h3 className="text-2xl font-bold text-primary-green mb-6" data-testid={`feature-title-${index}`}>
@@ -238,9 +261,11 @@ export default function Home() {
 
         {/* About Section */}
         <div className="bg-secondary-green py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div ref={aboutRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div className={isRTL ? 'lg:order-2' : ''}>
+              <div className={`${isRTL ? 'lg:order-2' : ''} transition-all duration-1000 ${
+                aboutVisible ? 'opacity-100 translate-x-0' : `opacity-0 ${isRTL ? 'translate-x-10' : '-translate-x-10'}`
+              }`}>
                 <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
                   {isRTL ? 'رؤيتنا' : 'Our Vision'}
                 </h2>
@@ -250,26 +275,34 @@ export default function Home() {
                     : 'We strive to be the first choice for companies and individuals in the Kingdom of Saudi Arabia for obtaining distinguished legal services and professional consultations.'}
                 </p>
                 <div className="flex gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-accent-gold mb-2">500+</div>
+                  <div className={`text-center transition-all duration-1000 delay-300 ${
+                    aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                  }`}>
+                    <div className="text-3xl font-bold text-accent-gold mb-2 hover:scale-110 transition-transform duration-300">500+</div>
                     <div className="text-gray-300">{isRTL ? 'عميل راضي' : 'Satisfied Clients'}</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-accent-gold mb-2">15+</div>
+                  <div className={`text-center transition-all duration-1000 delay-500 ${
+                    aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                  }`}>
+                    <div className="text-3xl font-bold text-accent-gold mb-2 hover:scale-110 transition-transform duration-300">15+</div>
                     <div className="text-gray-300">{isRTL ? 'سنة خبرة' : 'Years Experience'}</div>
                   </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-accent-gold mb-2">95%</div>
+                  <div className={`text-center transition-all duration-1000 delay-700 ${
+                    aboutVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'
+                  }`}>
+                    <div className="text-3xl font-bold text-accent-gold mb-2 hover:scale-110 transition-transform duration-300">95%</div>
                     <div className="text-gray-300">{isRTL ? 'معدل النجاح' : 'Success Rate'}</div>
                   </div>
                 </div>
               </div>
-              <div className={`relative ${isRTL ? 'lg:order-1' : ''}`}>
-                <div className="aspect-video rounded-2xl shadow-2xl overflow-hidden">
+              <div className={`relative ${isRTL ? 'lg:order-1' : ''} transition-all duration-1000 ${
+                aboutVisible ? 'opacity-100 translate-x-0 scale-100' : `opacity-0 ${isRTL ? '-translate-x-10' : 'translate-x-10'} scale-95`
+              }`}>
+                <div className="aspect-video rounded-2xl shadow-2xl overflow-hidden group hover:scale-105 transition-transform duration-500">
                   <img 
                     src="/images/lady-justice-saudi.jpg" 
                     alt={isRTL ? "العدالة" : "Lady Justice"}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
               </div>
@@ -279,24 +312,30 @@ export default function Home() {
 
         {/* Call to Action Section */}
         <div className="bg-gradient-to-r from-primary-green to-secondary-green py-20">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
+          <div ref={ctaRef} className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className={`text-4xl lg:text-5xl font-bold text-white mb-8 transition-all duration-1000 ${
+              ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               {isRTL ? 'هل تحتاج إلى استشارة قانونية؟' : 'Need Legal Consultation?'}
             </h2>
-            <p className="text-xl text-gray-200 mb-12 leading-relaxed">
+            <p className={`text-xl text-gray-200 mb-12 leading-relaxed transition-all duration-1000 delay-200 ${
+              ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               {isRTL 
                 ? 'تواصل معنا اليوم للحصول على استشارة قانونية مجانية من خبرائنا المتخصصين'
                 : 'Contact us today for a free legal consultation from our specialized experts'}
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <div className={`flex flex-col sm:flex-row gap-6 justify-center transition-all duration-1000 delay-400 ${
+              ctaVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
               <Link href="/contact">
-                <Button size="lg" className="bg-accent-gold text-white hover:bg-accent-gold/90 px-8 py-4 text-lg font-semibold shadow-lg">
+                <Button size="lg" className="bg-accent-gold text-white hover:bg-accent-gold/90 px-8 py-4 text-lg font-semibold shadow-lg transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
                   <Phone className={`w-6 h-6 ${isRTL ? 'ml-3' : 'mr-3'}`} />
                   {isRTL ? 'تواصل معنا' : 'Contact Us'}
                 </Button>
               </Link>
               <Link href="/services">
-                <Button size="lg" className="bg-white text-primary-green hover:bg-gray-100 border-2 border-white px-8 py-4 text-lg font-semibold shadow-lg">
+                <Button size="lg" className="bg-white text-primary-green hover:bg-gray-100 border-2 border-white px-8 py-4 text-lg font-semibold shadow-lg transform hover:scale-105 hover:shadow-2xl transition-all duration-300">
                   <BookOpen className={`w-6 h-6 ${isRTL ? 'ml-3' : 'mr-3'}`} />
                   {isRTL ? 'خدماتنا' : 'Our Services'}
                 </Button>
