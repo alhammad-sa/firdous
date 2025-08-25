@@ -37,12 +37,20 @@ function LatestUpdatesSection() {
       : d.toLocaleDateString('en-US');
   };
 
-  if (isLoading) return null;
+  if (isLoading) {
+    return (
+      <div className="bg-gradient-to-br from-sugar to-sugar-light py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-xl text-text-medium">Loading news...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div ref={sectionRef} className="bg-gradient-to-br from-sugar to-sugar-light py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`text-center mb-16 transition-all duration-1000 ${sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className={`text-center mb-16 transition-all duration-1000 ${sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-90 translate-y-2'}`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-primary-green mb-6">
             {isRTL 
               ? 'اقرأ آخر التحديثات حول قوانين وأنظمة المملكة' 
@@ -60,11 +68,7 @@ function LatestUpdatesSection() {
             {latestArticles.map((article, index) => (
               <Card 
                 key={article.id}
-                className={`group bg-white shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-1 overflow-hidden ${
-                  sectionVisible 
-                    ? 'opacity-100 translate-y-0' 
-                    : 'opacity-0 translate-y-20'
-                }`}
+                className={`group bg-white shadow-lg hover:shadow-2xl transition-all duration-700 transform hover:-translate-y-1 overflow-hidden ${sectionVisible ? 'opacity-100 translate-y-0' : 'opacity-90 translate-y-3'}`}
                 style={{
                   transitionDelay: `${index * 200}ms`
                 }}
