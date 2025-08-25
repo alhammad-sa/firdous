@@ -25,31 +25,49 @@ export function Navbar() {
   };
 
   return (
-    <nav className="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-200">
+    <nav className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-white/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-between h-20">
+          {/* Left Navigation */}
+          <div className="hidden md:flex items-center space-x-6 space-x-reverse">
+            {navItems.slice(0, 2).map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                  isActive(item.href)
+                    ? 'text-gray-900 border-b-2 border-gray-900'
+                    : 'text-gray-600 hover:text-gray-900'
+                }`}
+                data-testid={`nav-link-${item.href.replace('/', '') || 'home'}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Centered Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center" data-testid="logo-link">
+            <Link href="/" className="flex flex-col items-center" data-testid="logo-link">
               <img 
                 src={logoImage} 
                 alt={isRTL ? 'شعار شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan Logo'}
-                className="w-12 h-12 object-contain"
+                className="w-12 h-12 object-contain mb-1"
               />
-              <div className={`${isRTL ? 'mr-3' : 'ml-3'}`}>
-                <h1 className="text-base font-semibold text-gray-900 leading-tight">
+              <div className="text-center">
+                <h1 className="text-sm font-semibold text-gray-900 leading-tight">
                   {isRTL ? 'شركة فردوس سعود الشرهان' : 'Firdous Saud Al-Sharhan'}
                 </h1>
-                <p className="text-xs text-gray-600">
+                <p className="text-xs text-gray-600 whitespace-nowrap">
                   {isRTL ? 'للمحاماة والاستشارات القانونية' : 'Law and Consulting Co'}
                 </p>
               </div>
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
+          {/* Right Navigation */}
           <div className="hidden md:flex items-center space-x-6 space-x-reverse">
-            {navItems.map((item) => (
+            {navItems.slice(2).map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
@@ -65,7 +83,6 @@ export function Navbar() {
             ))}
             
             <LanguageSwitcher />
-
           </div>
 
           {/* Mobile menu button */}
