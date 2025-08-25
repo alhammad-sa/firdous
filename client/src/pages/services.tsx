@@ -111,14 +111,6 @@ export default function Services() {
                   <p className="text-text-medium leading-relaxed text-lg font-light" data-testid={`service-description-${index}`}>
                     {service.description}
                   </p>
-                  
-                  {/* Quality Indicator */}
-                  <div className="flex items-center mt-6 pt-6 border-t border-gray-100">
-                    <Star className="w-5 h-5 text-accent-gold fill-current" />
-                    <span className="text-sm text-text-medium font-medium ml-2">
-                      {isRTL ? 'خدمة متخصصة' : 'Professional Service'}
-                    </span>
-                  </div>
                 </CardContent>
               </Card>
             );
