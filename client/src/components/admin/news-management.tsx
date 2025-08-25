@@ -521,9 +521,6 @@ export function NewsManagement() {
                     {isRTL ? "تاريخ النشر" : "Published Date"}
                   </TableHead>
                   <TableHead className="px-6 py-4 text-sm font-semibold text-text-dark">
-                    {isRTL ? "المشاهدات" : "Views"}
-                  </TableHead>
-                  <TableHead className="px-6 py-4 text-sm font-semibold text-text-dark">
                     {isRTL ? "الحالة" : "Status"}
                   </TableHead>
                   <TableHead className="px-6 py-4 text-sm font-semibold text-text-dark">
@@ -551,9 +548,6 @@ export function NewsManagement() {
                     </TableCell>
                     <TableCell className="px-6 py-4 text-text-medium" data-testid={`article-date-${article.id}`}>
                       {formatDate(article.publishedAt)}
-                    </TableCell>
-                    <TableCell className="px-6 py-4 text-text-medium" data-testid={`article-views-${article.id}`}>
-                      {article.views}
                     </TableCell>
                     <TableCell className="px-6 py-4">
                       <Badge 

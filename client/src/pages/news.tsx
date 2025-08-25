@@ -197,10 +197,6 @@ export default function News() {
                             {getArticleCategory(article)}
                           </span>
                           <span>{formatDate(article.publishedAt || article.createdAt)}</span>
-                          <div className="flex items-center">
-                            <Eye className="w-4 h-4 mr-1" />
-                            <span>{article.views}</span>
-                          </div>
                         </div>
                         {article.imageUrl && (
                           <img 
@@ -217,10 +213,6 @@ export default function News() {
                       </div>
                     </DialogContent>
                   </Dialog>
-                  <div className="flex items-center text-text-medium text-sm">
-                    <Eye className={`w-4 h-4 ${isRTL ? 'ml-1' : 'mr-1'}`} />
-                    <span data-testid={`article-views-${index}`}>{article.views}</span>
-                  </div>
                 </div>
               </CardContent>
             </Card>
