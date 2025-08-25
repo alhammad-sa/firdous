@@ -46,7 +46,6 @@
   --sugar-light: hsl(48, 65%, 98%);
   --primary-green: hsl(322, 48%, 14%);
   --accent-gold: hsl(39, 62%, 48%);
-  --forest-green: hsl(150, 35%, 25%);
   --text-dark: hsl(0, 0%, 17%);
   --text-medium: hsl(215, 16%, 47%);
 }
@@ -127,20 +126,12 @@
     background-color: var(--accent-gold);
   }
   
-  .forest-green-bg {
-    background-color: var(--forest-green);
-  }
-  
   .text-primary-green {
     color: var(--primary-green);
   }
   
   .text-accent-gold {
     color: var(--accent-gold);
-  }
-  
-  .text-forest-green {
-    color: var(--forest-green);
   }
   
   .text-text-dark {
