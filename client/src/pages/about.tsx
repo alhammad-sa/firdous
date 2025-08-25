@@ -40,9 +40,9 @@ export default function About() {
       alt: isRTL ? "شركة الحربي للصرافة" : "Harbi Exchange"
     },
     { 
-      name: isRTL ? "إيلاف لرعاية وتأهيل اليتيمات" : "Ilaf Care Center", 
+      name: isRTL ? "إيلاف لرعاية وتأهيل النزيلات" : "Ilaf Care Center", 
       logo: "/images/partners/ilaf.png",
-      alt: isRTL ? "إيلاف لرعاية وتأهيل اليتيمات" : "Ilaf Care Center"
+      alt: isRTL ? "إيلاف لرعاية وتأهيل النزيلات" : "Ilaf Care Center"
     }
   ];
 
