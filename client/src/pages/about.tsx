@@ -24,12 +24,12 @@ export default function About() {
 
   const successPartners = [
     { 
-      name: "Sharhan Exchange", 
+      name: isRTL ? "الشرهان للصرافة" : "Sharhan Exchange", 
       logo: "/images/partners/sharhan-exchange.png",
       alt: isRTL ? "شركة الشرهان للصرافة" : "Sharhan Exchange"
     },
     { 
-      name: "Harbi Exchange", 
+      name: isRTL ? "الحربي للصرافة" : "Harbi Exchange", 
       logo: "/images/partners/harbi-exchange.png",
       alt: isRTL ? "شركة الحربي للصرافة" : "Harbi Exchange"
     },
