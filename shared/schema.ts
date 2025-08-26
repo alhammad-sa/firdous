@@ -1,73 +1,78 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, boolean, integer } from "drizzle-orm/pg-core";
-import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
-  email: text("email").notNull().unique(),
-  role: text("role").notNull().default("admin"),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
+// User types and schemas
+export interface User {
+  id: string;
+  username: string;
+  password: string;
+  email: string;
+  role: string;
+  createdAt: Date;
+}
+
+export const insertUserSchema = z.object({
+  username: z.string().min(3, "Username must be at least 3 characters"),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  email: z.string().email("Invalid email format"),
+  role: z.string().default("admin"),
 });
 
-export const newsArticles = pgTable("news_articles", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  title: text("title").notNull(),
-  titleEn: text("title_en"),
-  excerpt: text("excerpt").notNull(),
-  excerptEn: text("excerpt_en"),
-  content: text("content").notNull(),
-  contentEn: text("content_en"),
-  category: text("category").notNull(),
-  categoryEn: text("category_en"),
-  imageUrl: text("image_url"),
-  published: boolean("published").default(false).notNull(),
-  views: integer("views").default(0).notNull(),
-  publishedAt: timestamp("published_at"),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at").defaultNow().notNull(),
-});
-
-export const contactMessages = pgTable("contact_messages", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone").notNull(),
-  subject: text("subject").notNull(),
-  message: text("message").notNull(),
-  isRead: boolean("is_read").default(false).notNull(),
-  repliedAt: timestamp("replied_at"),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-});
-
-// Insert schemas
-export const insertUserSchema = createInsertSchema(users).omit({
-  id: true,
-  createdAt: true,
-});
-
-export const insertNewsArticleSchema = createInsertSchema(newsArticles).omit({
-  id: true,
-  views: true,
-  createdAt: true,
-  updatedAt: true,
-});
-
-export const insertContactMessageSchema = createInsertSchema(contactMessages).omit({
-  id: true,
-  isRead: true,
-  repliedAt: true,
-  createdAt: true,
-});
-
-// Types
-export type User = typeof users.$inferSelect;
 export type InsertUser = z.infer<typeof insertUserSchema>;
 
-export type NewsArticle = typeof newsArticles.$inferSelect;
+// News article types and schemas
+export interface NewsArticle {
+  id: string;
+  title: string;
+  titleEn: string | null;
+  excerpt: string;
+  excerptEn: string | null;
+  content: string;
+  contentEn: string | null;
+  category: string;
+  categoryEn: string | null;
+  imageUrl: string | null;
+  published: boolean;
+  views: number;
+  publishedAt: Date | null;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export const insertNewsArticleSchema = z.object({
+  title: z.string().min(1, "Title is required"),
+  titleEn: z.string().optional(),
+  excerpt: z.string().min(1, "Excerpt is required"),
+  excerptEn: z.string().optional(),
+  content: z.string().min(1, "Content is required"),
+  contentEn: z.string().optional(),
+  category: z.string().min(1, "Category is required"),
+  categoryEn: z.string().optional(),
+  imageUrl: z.string().optional(),
+  published: z.boolean().default(false),
+  publishedAt: z.date().optional(),
+});
+
 export type InsertNewsArticle = z.infer<typeof insertNewsArticleSchema>;
 
-export type ContactMessage = typeof contactMessages.$inferSelect;
+// Contact message types and schemas
+export interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  subject: string;
+  message: string;
+  isRead: boolean;
+  repliedAt: Date | null;
+  createdAt: Date;
+}
+
+export const insertContactMessageSchema = z.object({
+  name: z.string().min(1, "Name is required"),
+  email: z.string().email("Invalid email format"),
+  phone: z.string().min(1, "Phone is required"),
+  subject: z.string().min(1, "Subject is required"),
+  message: z.string().min(1, "Message is required"),
+});
+
 export type InsertContactMessage = z.infer<typeof insertContactMessageSchema>;
