@@ -1,0 +1,17 @@
+{
+  "name": "firdous-law-firm",
+  "version": "1.0.0",
+  "description": "Firdous Saud Al-Sharhan Law Firm Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "nanoid": "^5.0.9",
+    "zod": "^3.24.1"
+  }
+}
