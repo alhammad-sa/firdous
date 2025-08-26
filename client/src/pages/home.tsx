@@ -73,15 +73,13 @@ function LatestUpdatesSection() {
                   transitionDelay: `${index * 200}ms`
                 }}
               >
-                {article.imageUrl && (
-                  <div className="aspect-video overflow-hidden">
-                    <img 
-                      src={article.imageUrl} 
-                      alt={getArticleTitle(article)}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                )}
+                <div className="aspect-video overflow-hidden">
+                  <img 
+                    src={article.imageUrl || "/images/saudi-legal-default.jpg"} 
+                    alt={getArticleTitle(article)}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
                 <CardContent className="p-8">
                   <div className="flex items-center mb-4">
                     <span className="bg-secondary-green text-white px-3 py-1 rounded-full text-sm font-medium">

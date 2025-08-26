@@ -15,7 +15,7 @@ import { Plus, Edit, Trash2, Eye, Upload, Image } from "lucide-react";
 import { apiRequest } from "@/lib/queryClient";
 import type { NewsArticle, InsertNewsArticle } from "@shared/schema";
 import type { UploadResult } from "@uppy/core";
-import defaultNewsImage from "@assets/saudi_1756151692465.jpg";
+const defaultNewsImage = "/images/saudi-legal-default.jpg";
 
 export function NewsManagement() {
   const { t, language } = useLanguage();

@@ -142,14 +142,12 @@ export default function News() {
               className="bg-white shadow-sm hover:shadow-lg transition-all overflow-hidden"
               data-testid={`article-card-${index}`}
             >
-              {article.imageUrl && (
-                <img 
-                  src={article.imageUrl} 
-                  alt={getArticleTitle(article)}
-                  className="w-full h-48 object-cover"
-                  data-testid={`article-image-${index}`}
-                />
-              )}
+              <img 
+                src={article.imageUrl || "/images/saudi-legal-default.jpg"} 
+                alt={getArticleTitle(article)}
+                className="w-full h-48 object-cover"
+                data-testid={`article-image-${index}`}
+              />
               
               <CardContent className="p-6">
                 <div className="flex items-center mb-3">
@@ -198,13 +196,11 @@ export default function News() {
                           </span>
                           <span>{formatDate(article.publishedAt || article.createdAt)}</span>
                         </div>
-                        {article.imageUrl && (
-                          <img 
-                            src={article.imageUrl} 
-                            alt={getArticleTitle(article)}
-                            className="w-full h-64 object-cover rounded-lg"
-                          />
-                        )}
+                        <img 
+                          src={article.imageUrl || "/images/saudi-legal-default.jpg"} 
+                          alt={getArticleTitle(article)}
+                          className="w-full h-64 object-cover rounded-lg"
+                        />
                         <div className="prose max-w-none">
                           <p className="text-lg leading-relaxed whitespace-pre-wrap">
                             {isRTL ? article.content : (article.contentEn || article.content)}
