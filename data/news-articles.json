@@ -83,22 +83,5 @@
     "publishedAt": "2025-08-26T14:17:01.482Z",
     "createdAt": "2025-08-26T14:17:01.482Z",
     "updatedAt": "2025-08-26T14:17:01.482Z"
-  },
-  {
-    "title": "مثال",
-    "titleEn": "example",
-    "excerpt": "مثال",
-    "excerptEn": "example",
-    "content": "مثال",
-    "contentEn": "example",
-    "category": "مثال",
-    "categoryEn": "example",
-    "imageUrl": "/images/saudi-legal-default.jpg",
-    "published": true,
-    "id": "6cc92153-d124-4fed-a6d7-0407abcd0824",
-    "views": 0,
-    "publishedAt": "2025-08-26T14:18:16.578Z",
-    "createdAt": "2025-08-26T14:18:10.751Z",
-    "updatedAt": "2025-08-26T14:18:16.578Z"
   }
 ]
